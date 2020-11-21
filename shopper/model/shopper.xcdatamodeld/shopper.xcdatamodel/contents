@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19C57" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Item" representedClassName="Item" syncable="YES" codeGenerationType="class">
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+        <attribute name="sku" attributeType="String" defaultValueString=""/>
+        <relationship name="listItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ListItem" inverseName="item" inverseEntity="ListItem"/>
+    </entity>
+    <entity name="List" representedClassName="List" syncable="YES" codeGenerationType="class">
+        <attribute name="created" attributeType="Date" defaultDateTimeInterval="599551200" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+        <attribute name="open" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="ListItem" inverseName="list" inverseEntity="ListItem"/>
+        <relationship name="store" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Store" inverseName="lists" inverseEntity="Store"/>
+    </entity>
+    <entity name="ListItem" representedClassName="ListItem" syncable="YES" codeGenerationType="class">
+        <attribute name="quantity" attributeType="Decimal" defaultValueString="0.0"/>
+        <relationship name="item" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="listItems" inverseEntity="Item"/>
+        <relationship name="list" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="List" inverseName="items" inverseEntity="List"/>
+    </entity>
+    <entity name="Store" representedClassName="Store" syncable="YES" codeGenerationType="class">
+        <attribute name="address1" attributeType="String" defaultValueString=""/>
+        <attribute name="address2" optional="YES" attributeType="String"/>
+        <attribute name="city" attributeType="String" defaultValueString=""/>
+        <attribute name="latitude" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="longitude" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="name" attributeType="String" defaultValueString=""/>
+        <attribute name="state" attributeType="String" defaultValueString=""/>
+        <attribute name="zip" attributeType="String" defaultValueString=""/>
+        <relationship name="lists" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="List" inverseName="store" inverseEntity="List"/>
+    </entity>
+    <elements>
+        <element name="List" positionX="-591.44140625" positionY="168.0078125" width="128" height="118"/>
+        <element name="ListItem" positionX="-383.98046875" positionY="182.8203125" width="128" height="88"/>
+        <element name="Store" positionX="-774.46875" positionY="108.23828125" width="128" height="178"/>
+        <element name="Item" positionX="-381.6640625" positionY="337.4140625" width="128" height="88"/>
+    </elements>
+</model>
